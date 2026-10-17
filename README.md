@@ -71,3 +71,20 @@ Para instalar Homebrew en macOS Sequoia x86_64 con elevación gráfica:
 chmod +x apple_askpass.sh
 SUDO_ASKPASS="$(pwd)/apple_askpass.sh" /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/df3c2556141c012eaba0453ede7a1bd4f05b824c/install.sh)"
 ```
+
+---
+
+## Configuración Post-Instalación (Wi-Fi, Teclado y Askpass)
+
+Para configurar automáticamente HeliPort (Wi-Fi Intel), remapear las teclas Ctrl y Super/Windows para atajos habituales de PC e integrar el asistente gráfico:
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+Opciones adicionales:
+- `./setup.sh --revert-keyboard` (restaurar mapeo de teclado original).
+- `./setup.sh --keyboard-only` (aplicar únicamente el parche de teclado).
+- `./setup.sh --wifi-only` (configurar únicamente el Wi-Fi).
+
