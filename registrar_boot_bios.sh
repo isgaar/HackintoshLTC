@@ -8,7 +8,7 @@
 set -e
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ASKPASS="$DIR/apple_askpass.sh"
+ASKPASS="$DIR/setup.sh"
 
 echo "================================================================="
 echo "   Configurador de Arranque UEFI Independiente (OpenCore / macOS) "

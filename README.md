@@ -68,8 +68,8 @@ chmod +x registrar_boot_bios.sh
 Para instalar Homebrew en macOS Sequoia x86_64 con elevación gráfica:
 
 ```bash
-chmod +x apple_askpass.sh
-SUDO_ASKPASS="$(pwd)/apple_askpass.sh" /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/df3c2556141c012eaba0453ede7a1bd4f05b824c/install.sh)"
+chmod +x setup.sh
+./setup.sh --brew
 ```
 
 ---
@@ -84,6 +84,7 @@ chmod +x setup.sh
 ```
 
 Opciones adicionales:
+- `./setup.sh --brew` (instalar Homebrew para arquitectura x86_64).
 - `./setup.sh --revert-keyboard` (restaurar mapeo de teclado original).
 - `./setup.sh --keyboard-only` (aplicar únicamente el parche de teclado).
 - `./setup.sh --wifi-only` (configurar únicamente el Wi-Fi).

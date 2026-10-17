@@ -2,9 +2,10 @@
 # ==============================================================================
 # Script: setup.sh (HackintoshLTC Post-Install Setup)
 # Descripción: Automatiza la configuración esencial post-instalación:
-#   1. Wi-Fi Intel (Instalación y configuración de HeliPort + renombrado de red)
-#   2. Remapeo de teclado Windows (Invierte Ctrl y Super/Windows para atajos tipo PC)
-#   3. Asistente gráfico de elevación (Apple askpass integrado)
+#   1. Asistente gráfico de elevación (Apple askpass integrado)
+#   2. Instalación de Homebrew (x86_64) con asistente gráfico integrado
+#   3. Wi-Fi Intel (Instalación y configuración de HeliPort + renombrado de red)
+#   4. Remapeo de teclado Windows (Invierte Ctrl y Super/Windows para atajos tipo PC)
 # ==============================================================================
 
 set -e
@@ -12,28 +13,38 @@ set -e
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # ------------------------------------------------------------------------------
-# 1. Asistente Gráfico de Sudo (Askpass Integrado)
+# 1. Asistente Gráfico de Sudo Integrado (Askpass)
 # ------------------------------------------------------------------------------
-ASKPASS_SCRIPT="$DIR/apple_askpass.sh"
-
-create_askpass_if_missing() {
-    if [ ! -f "$ASKPASS_SCRIPT" ]; then
-        cat << 'EOF' > "$ASKPASS_SCRIPT"
-#!/bin/bash
-osascript -e 'tell application "System Events"
+askpass_prompt() {
+    PROMPT_MSG="${1:-Se requieren permisos de administrador en tu Hackintosh:}"
+    osascript -e 'tell application "System Events"
 activate
-text returned of (display dialog "Se requieren permisos de administrador en tu Hackintosh:\n\nIngresa tu contraseña:" default answer "" with hidden answer with icon caution with title "Autenticación del Sistema")
+text returned of (display dialog "'"$PROMPT_MSG"'\n\nIngresa tu contraseña:" default answer "" with hidden answer with icon caution with title "Autenticación del Sistema")
 end tell'
-EOF
-        chmod +x "$ASKPASS_SCRIPT"
-    fi
 }
 
-create_askpass_if_missing
-export SUDO_ASKPASS="$ASKPASS_SCRIPT"
+# Si el script es invocado por sudo o con la opción --askpass, actuar como askpass
+if [ "$1" = "--askpass" ] || [[ "$1" == *assword* ]] || [[ "$1" == *ontraseña* ]]; then
+    askpass_prompt "$1"
+    exit 0
+fi
+
+export SUDO_ASKPASS="$DIR/setup.sh"
 
 # ------------------------------------------------------------------------------
-# 2. Configuración de Wi-Fi Intel (HeliPort.app)
+# 2. Instalación de Homebrew (x86_64)
+# ------------------------------------------------------------------------------
+setup_brew() {
+    echo ""
+    echo "================================================================="
+    echo " Instalando Homebrew para macOS Sequoia (x86_64)..."
+    echo "================================================================="
+    export SUDO_ASKPASS="$DIR/setup.sh"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/df3c2556141c012eaba0453ede7a1bd4f05b824c/install.sh)"
+}
+
+# ------------------------------------------------------------------------------
+# 3. Configuración de Wi-Fi Intel (HeliPort.app)
 # ------------------------------------------------------------------------------
 setup_wifi() {
     echo ""
@@ -97,7 +108,7 @@ setup_wifi() {
 }
 
 # ------------------------------------------------------------------------------
-# 3. Remapeo de Teclado Windows (Ctrl <-> Super / Windows)
+# 4. Remapeo de Teclado Windows (Ctrl <-> Super / Windows)
 # ------------------------------------------------------------------------------
 setup_keyboard_mapping() {
     echo ""
@@ -171,6 +182,10 @@ case "$1" in
         ;;
     --wifi-only)
         setup_wifi
+        exit 0
+        ;;
+    --brew)
+        setup_brew
         exit 0
         ;;
     *)
