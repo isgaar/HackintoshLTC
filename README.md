@@ -4,6 +4,27 @@ Configuración de **OpenCore 1.0.7** optimizada y probada para ejecutar **macOS 
 
 ---
 
+## 📦 Clonado con Dependencias Profundas (Submódulos)
+
+Este repositorio enlaza y rastrea las herramientas auxiliares automáticamente mediante submódulos y seguimiento de dependencias:
+
+Para clonar este repositorio con todas sus dependencias:
+```bash
+git clone --recurse-submodules https://github.com/isgaar/HackintoshLTC.git
+```
+
+Si ya has clonado el repositorio, puedes inicializar todas las dependencias en cualquier momento con:
+```bash
+git submodule update --init --recursive
+```
+
+### Dependencias y Herramientas Integradas:
+- **`Hardware-Sniffer/`** ([lzhoang2801/Hardware-Sniffer](https://github.com/lzhoang2801/Hardware-Sniffer)): Submódulo Git para la detección automática y reporte de hardware del equipo.
+- **`OpCore-Simplify/`** ([lzhoang2801/OpCore-Simplify](https://github.com/lzhoang2801/OpCore-Simplify)): Submódulo Git para la simplificación de ACPI y generación de OpenCore.
+- **`OpenCore-1.0.7-RELEASE/`**: Binarios oficiales y utilidades (`macrecovery.py`, `macserial`, `ocvalidate`, etc.).
+
+---
+
 ## 💻 Especificaciones de Hardware
 
 | Componente | Detalle del Hardware | Soporte en macOS |
@@ -36,6 +57,7 @@ El repositorio incluye el script `crear_usb_instalador.sh`, el cual sigue las di
    ./crear_usb_instalador.sh
    ```
 4. El script:
+   - Inicializará automáticamente los submódulos si no estaban clonados.
    - Detectará automáticamente las unidades USB conectadas.
    - Formateará la memoria en **GPT** y partición **FAT32** con etiqueta `OPENCORE`.
    - Copiará la carpeta `EFI` y los archivos de recuperación de **macOS Sequoia** (`com.apple.recovery.boot/BaseSystem.dmg`).

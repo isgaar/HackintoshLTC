@@ -1,11 +1,10 @@
-# Herramientas de generacion y paquetes auxiliares
-Hardware-Sniffer/
-OpCore-Simplify/
-OpenCore-1.0.7-RELEASE/
+# Ignorar imagenes pesadas de recovery descargadas por macrecovery (superan el limite de 100MB de GitHub)
+**/com.apple.recovery.boot/
+*.dmg
+*.chunklist
 
-# macOS Recovery temporal si se copia localmente
-com.apple.recovery.boot/
-
-# Temporales de compilación y sistema
+# Temporales de compilacion y sistema
 *.dsl
 .DS_Store
+__pycache__/
+*.pyc

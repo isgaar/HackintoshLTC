@@ -1,0 +1,8 @@
+[submodule "Hardware-Sniffer"]
+	path = Hardware-Sniffer
+	url = https://github.com/lzhoang2801/Hardware-Sniffer.git
+	ignore = dirty
+[submodule "OpCore-Simplify"]
+	path = OpCore-Simplify
+	url = https://github.com/lzhoang2801/OpCore-Simplify.git
+	ignore = dirty

@@ -70,6 +70,16 @@ check_dependencies() {
     fi
 }
 
+check_and_init_submodules() {
+    if git -C "${SCRIPT_DIR}" rev-parse --is-inside-work-tree &>/dev/null; then
+        if git -C "${SCRIPT_DIR}" submodule status 2>/dev/null | grep -q '^-'; then
+            info "Inicializando dependencias de submódulos (Hardware-Sniffer, OpCore-Simplify)..."
+            git -C "${SCRIPT_DIR}" submodule update --init --recursive
+            success "Submódulos inicializados correctamente."
+        fi
+    fi
+}
+
 locate_recovery_files() {
     info "Buscando archivos de recuperación de macOS (BaseSystem.dmg)..."
     
@@ -310,6 +320,7 @@ show_post_instructions() {
 main() {
     print_banner
     check_dependencies
+    check_and_init_submodules
     validate_efi_dir
     locate_recovery_files
     select_target_disk
