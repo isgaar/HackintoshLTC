@@ -158,7 +158,7 @@
 			<key>PciRoot(0x0)/Pci(0x8,0x1)/Pci(0x0,0x6)</key>
 			<dict>
 				<key>layout-id</key>
-				<integer>13</integer>
+				<integer>21</integer>
 			</dict>
 		</dict>
 		<key>Delete</key>
@@ -1679,7 +1679,7 @@
 				AAAAAAAAAAAAAAAAAAA=
 				</data>
 				<key>boot-args</key>
-				<string>keepsyms=1 debug=0x100 -amfipassbeta -lilubetaall revpatch=sbvmm revblock=pci alcid=13</string>
+				<string>keepsyms=1 debug=0x100 -amfipassbeta -lilubetaall revpatch=sbvmm revblock=pci alcid=21</string>
 				<key>csr-active-config</key>
 				<data>
 				AwoAAA==
