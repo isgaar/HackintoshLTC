@@ -2,18 +2,22 @@
 
 Configuración de **OpenCore 1.0.7** optimizada y probada para ejecutar **macOS Sequoia (15)** en hardware AMD Ryzen Zen 3 con gráficos integrados Radeon Vega (Cezanne).
 
----
-
-## 📦 Clonado con Dependencias Profundas (Submódulos)
-
-Este repositorio enlaza y rastrea las herramientas auxiliares automáticamente mediante submódulos y seguimiento de dependencias:
-
-Para clonar este repositorio con todas sus dependencias:
 ```bash
 git clone --recurse-submodules https://github.com/isgaar/HackintoshLTC.git
 ```
 
-Si ya has clonado el repositorio, puedes inicializar todas las dependencias en cualquier momento con:
+---
+
+## 📦 Clonado con Dependencias Profundas (Submódulos)
+
+Para clonar este repositorio con todas sus herramientas y dependencias automáticamente:
+
+```bash
+git clone --recurse-submodules https://github.com/isgaar/HackintoshLTC.git
+```
+
+Si ya has clonado el repositorio de forma simple, puedes inicializar y descargar todas las dependencias con:
+
 ```bash
 git submodule update --init --recursive
 ```
