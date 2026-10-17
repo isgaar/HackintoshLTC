@@ -1,0 +1,11 @@
+# Herramientas de generacion y paquetes auxiliares
+Hardware-Sniffer/
+OpCore-Simplify/
+OpenCore-1.0.7-RELEASE/
+
+# macOS Recovery temporal si se copia localmente
+com.apple.recovery.boot/
+
+# Temporales de compilación y sistema
+*.dsl
+.DS_Store
