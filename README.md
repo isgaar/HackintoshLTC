@@ -116,3 +116,17 @@ chmod +x apple_askpass.sh
 SUDO_ASKPASS="$(pwd)/apple_askpass.sh" /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/df3c2556141c012eaba0453ede7a1bd4f05b824c/install.sh)"
 ```
 
+---
+
+## 🪟 Arranque Independiente en la BIOS (Dual Boot con Windows)
+
+Para registrar OpenCore como una entrada UEFI dedicada en la BIOS de tu Lenovo ThinkCentre (de modo que en el menú `F12` aparezcan de forma independiente tanto **OpenCore** como **Windows Boot Manager** sin mover ni crear particiones adicionales):
+
+```bash
+chmod +x registrar_boot_bios.sh
+./registrar_boot_bios.sh
+```
+
+Este script activa `LauncherOption = Full`, valida la configuración con `ocvalidate` y registra el cargador directamente en la NVRAM/UEFI mediante `bless`.
+
+
