@@ -104,3 +104,15 @@ USB/
     ├── BaseSystem.chunklist
     └── BaseSystem.dmg
 ```
+
+---
+
+## 🍺 Instalación de Homebrew en macOS Sequoia (x86_64)
+
+Dado que las versiones más recientes del script principal de Homebrew restringen la instalación automática oficial a Apple Silicon, se incluye el script asistente gráfico `apple_askpass.sh` para solicitar permisos de administrador mediante una ventana nativa de macOS ("polkit") y completar la configuración de `/usr/local`:
+
+```bash
+chmod +x apple_askpass.sh
+SUDO_ASKPASS="$(pwd)/apple_askpass.sh" /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/df3c2556141c012eaba0453ede7a1bd4f05b824c/install.sh)"
+```
+

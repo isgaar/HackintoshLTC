@@ -1679,7 +1679,7 @@
 				AAAAAAAAAAAAAAAAAAA=
 				</data>
 				<key>boot-args</key>
-				<string>keepsyms=1 debug=0x100 -v -amfipassbeta -lilubetaall revpatch=sbvmm revblock=pci alcid=13</string>
+				<string>keepsyms=1 debug=0x100 -amfipassbeta -lilubetaall revpatch=sbvmm revblock=pci alcid=13</string>
 				<key>csr-active-config</key>
 				<data>
 				AwoAAA==
