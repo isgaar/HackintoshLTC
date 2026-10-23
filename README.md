@@ -28,7 +28,7 @@ git submodule update --init --recursive
 
 - **Equipo:** Lenovo ThinkCentre M75s Gen 2
 - **CPU / iGPU:** AMD Ryzen 5 5600G (Radeon Vega)
-- **Audio:** Realtek ALC623 (alcid=21)
+- **Audio:** Realtek ALC623 (alcid=13, EAPD habilitado)
 - **Ethernet:** Realtek RTL8111
 - **Wi-Fi / BT:** Intel Wireless-AC 9260
 
@@ -52,14 +52,19 @@ El script formatea la memoria USB en FAT32/GPT e instala la EFI junto a los arch
 
 ---
 
-## Arranque Independiente en BIOS (Dual Boot)
+## Gestión de Prioridad de Arranque UEFI (GRUB / OpenCore)
 
-Para registrar OpenCore en la NVRAM de la BIOS de forma independiente a Windows Boot Manager sin alterar particiones:
+Para evitar que OpenCore secuestre el orden de arranque de la BIOS y mantener GRUB como gestor principal por defecto:
 
 ```bash
 chmod +x registrar_boot_bios.sh
 ./registrar_boot_bios.sh
 ```
+
+Opciones:
+- `./registrar_boot_bios.sh` o `./registrar_boot_bios.sh --grub` (mantiene a GRUB en primer lugar y configura `LauncherOption=Disabled`).
+- `./registrar_boot_bios.sh --opencore` (asigna a OpenCore como prioridad en BIOS).
+- `./registrar_boot_bios.sh --status` (muestra el estado actual de los cargadores y OpenCore).
 
 ---
 
